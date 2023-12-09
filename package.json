@@ -22,6 +22,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"argon2": "^0.31.2",
 		"mongodb": "^6.3.0"
 	}
 }

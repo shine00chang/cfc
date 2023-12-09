@@ -13,9 +13,10 @@ classes: [
 ]
 
 users: [
-  id
+  creation_timestamp
+  username
   name
-  password (nohash nosalt)
+  password
   pfp
   classes: []
 ]
