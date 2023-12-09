@@ -28,13 +28,13 @@ AP's:
   - POST (1) /user/login
   - POST (1) /user/logout
   - GET  (2) /user/classes 
-  - POST (2) /user/join/:class
-  - GET  (2) /user/class/:class
-  - POST (5) /user/class/:class/post/:post/reply
+  - GET  (2) /user/:class
+  - POST (2) /user/:class/join
+  - POST (5) /user/:class/:post/reply
 - /teacher/
-  - POST   (3) /teacher/class/create
-  - POST   (4) /teacher/class/:class/post // lots of validation
-  - DELETE (4) /teacher/class/:class/post/:post
-  - DELETE (3) /teacher/class/:class/remove/:user
-  - DELETE (3) /teacher/class/:class/delete/
+  - POST   (3) /teacher/create
+  - POST   (4) /teacher/:class/post // lots of validation
+  - DELETE (4) /teacher/:class/:post
+  - DELETE (3) /teacher/:class/remove/:user
+  - DELETE (3) /teacher/:class/delete/
 
