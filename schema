@@ -24,9 +24,9 @@ users: [
 AP's: 
 - Physics 1
 - /user/
-  - POST (1) /user/create
-  - POST (1) /user/login
-  - POST (1) /user/logout
+x - POST (1) /user/create
+x - POST (1) /user/login
+x - POST (1) /user/logout
   - GET  (2) /user/classes 
   - GET  (2) /user/:class
   - POST (2) /user/:class/join

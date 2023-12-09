@@ -14,7 +14,6 @@ export async function POST ({ request }: { request: any }) {
   if (await get_user(username)) 
     return new Response(`a user already exists with username '${username}'`, { status: 400 });
 
-  // TODO: add to user collection
   await add_user(username, name, password);
   console.log("created user:", { username, name });
 
