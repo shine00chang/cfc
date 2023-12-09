@@ -14,7 +14,7 @@ users: [
 ]
 */
 
-export async function add_user(username: string, password: string, pfp?: string) {
+export async function add_user(username: string, name: string, password: string, pfp?: string) {
   //
   return await users.insertOne({
     creation_timestamp: Date.now(),
