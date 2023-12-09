@@ -4,8 +4,8 @@ import { get_class } from '$lib/server/class_op.js';
 
 
 export async function load ({ cookies }: { cookies: any }) {
-  let user;
-  user = await auth_student(cookies);
+  const user = await auth_student(cookies);
+  console.log(user);
   if (!user) throw redirect(303, "../");
 
   const classes = await Promise.all(user.classes.map(async (id: string) => {

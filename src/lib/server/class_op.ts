@@ -5,12 +5,14 @@ const classes = db.collection("classes");
 
 
 export async function add_class(name: string) {
-  return await classes.insertOne({
+   const insert_obj = {
     id: gen_id(),
     name: name,
     posts: [],
-    teachers: []
-  });
+    teachers: [],
+  }
+  await classes.insertOne(insert_obj);
+  return insert_obj;
 }
 
 export async function get_class(id: string) {

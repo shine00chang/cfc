@@ -36,15 +36,19 @@ export async function get_users_in_class(class_id: string) {
   //todo: make sure this works
   return await users.find({
     classes: class_id,
-  });
+  }).toArray();
 }
 
 export async function add_user_to_class(username: string, class_id: string) {
-  return await users.updateOne({
+  const { modifiedCount } = await users.updateOne({
     username,
+    classes: {
+      $nin: [class_id],
+    }
   }, {
     $push: {
       classes: class_id,
     }
   });
+  return modifiedCount;
 }

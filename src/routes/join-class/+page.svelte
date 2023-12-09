@@ -1,18 +1,19 @@
 <script lang="ts">
 import { fetchPost } from '$lib/util/fetch.ts';
+import { goto } from '$app/navigation';
 let classid;
 
-const onCreate = () => {
+const onCreate = async () => {
   const body = { classid };
-  fetchPost(`/api/user/${classid}/join`, {})
-    .then(async res => {
-      console.log(res.status);
-      console.log(await res.text());
+  const res = await fetchPost(`/api/class/join`, body)
+  console.log(res.status);
+  console.log(await res.text());
 
-      if (res.status >= 400) {
-        alert("failed, check console");
-      }
-    })
+  if (res.status >= 400) {
+    alert("failed, check console");
+  } else {
+    goto('/portal')
+  }
 }
 </script>
 
