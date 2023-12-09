@@ -5,17 +5,16 @@ import { get_class } from '$lib/server/class_op.js';
 
 export async function load ({ cookies }: { cookies: any }) {
   let user;
-  try {
-    user = await auth_student(cookies);
-  } catch {
-    throw redirect(303, "../");
-  }
+  user = await auth_student(cookies);
   if (!user) throw redirect(303, "../");
 
-  const classes = user.classes.map(async (id: string) => {
+  const classes = await Promise.all(user.classes.map(async (id: string) => {
     const class_ = await get_class(id)
     if (!class_) return `notfound`
-    return class_.name;
-  })
+    return { 
+      name: class_.name,
+      id: class_.id
+    }
+  }))
   return { classes };
 }

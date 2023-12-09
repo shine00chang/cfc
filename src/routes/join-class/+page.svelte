@@ -1,10 +1,10 @@
 <script lang="ts">
 import { fetchPost } from '$lib/util/fetch.ts';
-let classname;
+let classid;
 
 const onCreate = () => {
-  const body = { classname };
-  fetchPost("/api/teacher/create", body)
+  const body = { classid };
+  fetchPost(`/api/user/${classid}/join`, {})
     .then(async res => {
       console.log(res.status);
       console.log(await res.text());
@@ -17,6 +17,6 @@ const onCreate = () => {
 </script>
 
 <div>
-  <input bind:value={classname} type="text" placeholder="class name">
-  <button on:click={onCreate}>create</button>
+  <input bind:value={classid} type="text" placeholder="class id">
+  <button on:click={onCreate}>join</button>
 </div>

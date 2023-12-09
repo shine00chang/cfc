@@ -1,49 +1,48 @@
 <script lang="ts">
-  import { fetchPost } from "$lib/util/fetch.ts";
+import { fetchPost } from "$lib/util/fetch.ts";
 
-  let username: string = "";
-  let name: string = "";
-  let password: string = "";
+let username: string = "";
+let name: string = "";
+let password: string = "";
 
-  const onCreate = async () => {
-    // validation handled on serverside. 
-    const body = { username, name, password }
-    const res = await fetchPost("/api/user/create", body)
-      .then(async res => {
-        console.log(res.status);
-        console.log(await res.text());
+const onCreate = async () => {
+  // validation handled on serverside. 
+  const body = { username, name, password }
+  const res = await fetchPost("/api/user/create", body)
+    .then(async res => {
+      console.log(res.status);
+      console.log(await res.text());
 
-        if (res.status >= 400) {
-          alert("failed, check console");
-        }
-      })
-  }
+      if (res.status >= 400) {
+        alert("failed, check console");
+      }
+    })
+}
 
-  const onLogin = async () => {
-    const body = { username, password }
-    const res = await fetchPost("/api/user/login", body)
-      .then(async res => {
-        console.log(res.status);
-        console.log(await res.text());
+const onLogin = async () => {
+  const body = { username, password }
+  const res = await fetchPost("/api/user/login", body)
+    .then(async res => {
+      console.log(res.status);
+      console.log(await res.text());
 
-        if (res.status >= 400) {
-          alert("failed, check console");
-        }
-      })
-  }
+      if (res.status >= 400) {
+        alert("failed, check console");
+      }
+    })
+}
 
-  const onLogout = async () => {
-    const res = await fetchPost("/api/user/logout", undefined)
-      .then(async res => {
-        console.log(res.status);
-        console.log(await res.text());
+const onLogout = async () => {
+  const res = await fetchPost("/api/user/logout", undefined)
+    .then(async res => {
+      console.log(res.status);
+      console.log(await res.text());
 
-        if (res.status >= 400) {
-          alert("failed, check console");
-        }
-      })
-  }
-
+      if (res.status >= 400) {
+        alert("failed, check console");
+      }
+    })
+}
 </script>
 
 <main class="h-full">
