@@ -1,0 +1,39 @@
+classes: [
+  id
+  posts: [
+    type: enumeration
+    content: {
+      // could be youtube link, pdf link, text with images
+      [anything depending on type]
+    }
+    submissions: []
+    replies: []
+  ]
+  teachers: []
+]
+
+users: [
+  id
+  name
+  password (nohash nosalt)
+  pfp
+  classes: []
+]
+
+AP's: 
+- Physics 1
+- /user/
+  - POST (1) /user/create
+  - POST (1) /user/login
+  - POST (1) /user/logout
+  - GET  (2) /user/classes 
+  - POST (2) /user/join/:class
+  - GET  (2) /user/class/:class
+  - POST (5) /user/class/:class/post/:post/reply
+- /teacher/
+  - POST   (3) /teacher/class/create
+  - POST   (4) /teacher/class/:class/post // lots of validation
+  - DELETE (4) /teacher/class/:class/post/:post
+  - DELETE (3) /teacher/class/:class/remove/:user
+  - DELETE (3) /teacher/class/:class/delete/
+
