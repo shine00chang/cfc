@@ -38,3 +38,13 @@ export async function get_users_in_class(class_id: string) {
     classes: class_id,
   });
 }
+
+export async function add_user_to_class(username: string, class_id: string) {
+  return await users.updateOne({
+    username,
+  }, {
+    $push: {
+      classes: class_id,
+    }
+  });
+}
