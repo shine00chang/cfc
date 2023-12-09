@@ -1,6 +1,11 @@
 <script lang="ts">
+<<<<<<< HEAD
   import { fetchPost } from "$lib/util/fetch.ts";
   import Navbar from "$lib/Navbar.svelte";
+=======
+import { fetchPost } from "$lib/util/fetch.ts";
+import { goto } from "$app/navigation";
+>>>>>>> e89e758 ((reorg))
 
 let username: string = "";
 let name: string = "";

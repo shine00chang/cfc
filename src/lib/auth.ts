@@ -13,8 +13,12 @@ export const auth_student = async (cookies: any) => {
   if (!session) return undefined;
 
   // TODO: Might get fucked by signing
-  const user = get_user(session);
-  if (!user) console.log("CRITICAL ISSUE: session token refers to a nonexistent user");
+  const user: any = await get_user(session);
+  if (!user) { 
+    console.log("CRITICAL ISSUE: session token refers to a nonexistent user");
+    return undefined;
+  }
+  user._id = undefined;
 
   return user;
 }
