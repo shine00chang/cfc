@@ -5,8 +5,8 @@
 
 <!-- Temporary testing elements -->
 <div class="w-full flex flex-row gap-8">
-  <a href="./class/new">New Class</a>
-  <a href="./class/join">Join Class</a>
+  <a href="portal/class/new">New Class</a>
+  <a href="portal/class/join">Join Class</a>
 </div>
 
 <div class="flex flex-row flex-wrap w-full gap-8 p-8">

@@ -6,7 +6,7 @@ export async function load ({ user, params }: { user: any, cookies: any, params:
   const { classid } = params;
   if (!user.classes.has(classid)) {
     console.log(`${user.name} attempted to access class ${classid} that they are not in`);
-    throw redirect(300, '/');
+    throw redirect(307, '/');
   }
   const class_ = get_class(classid);
   return { class_ };

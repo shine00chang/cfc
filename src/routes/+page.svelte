@@ -1,11 +1,7 @@
 <script lang="ts">
-<<<<<<< HEAD
-  import { fetchPost } from "$lib/util/fetch.ts";
-  import Navbar from "$lib/Navbar.svelte";
-=======
 import { fetchPost } from "$lib/util/fetch.ts";
+import Navbar from "$lib/Navbar.svelte";
 import { goto } from "$app/navigation";
->>>>>>> e89e758 ((reorg))
 
 let username: string = "";
 let name: string = "";
@@ -28,14 +24,14 @@ const onCreate = async () => {
 const onLogin = async () => {
   const body = { username, password }
   const res = await fetchPost("/api/user/login", body)
-    .then(async res => {
-      console.log(res.status);
-      console.log(await res.text());
+  console.log(res.status);
+  console.log(await res.text());
 
-      if (res.status >= 400) {
-        alert("failed, check console");
-      }
-    })
+  if (res.status >= 400) {
+    alert("failed, check console");
+  } else {
+    goto("/portal");
+  }
 }
 </script>
 

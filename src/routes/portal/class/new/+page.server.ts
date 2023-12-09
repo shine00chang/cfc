@@ -7,8 +7,8 @@ export async function load ({ cookies }: { cookies: any }) {
   try {
     user = await auth_student(cookies);
   } catch {
-    throw redirect(303, "../");
+    throw redirect(307, "../");
   }
-  if (!user) throw redirect(303, "../");
+  if (!user) throw redirect(307, "../");
   return;
 }
