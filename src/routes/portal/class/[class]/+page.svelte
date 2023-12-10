@@ -55,7 +55,7 @@
 
   <div class="flex flex-row w-full">
     {#if class_.teachers.includes(user.username)}
-      <a href="{$page.url.pathname}/create">Create Posts</a>
+      <a href="{$page.url.pathname}/create" class="btn">Create Posts</a>
       <br>
     {/if}
 

@@ -86,7 +86,7 @@ export async function add_post_submission(class_id: string, post_id: string, aut
   });
 }
 
-export async function add_class(name: string, first_teacher): Promise<ClassObj> {
+export async function add_class(name: string, first_teacher: string): Promise<ClassObj> {
   const insert_obj: ClassObj = {
     id: gen_id(),
     name: name,

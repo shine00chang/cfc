@@ -16,7 +16,7 @@ export async function POST ({ request, cookies }: { request: any, cookies: any }
   const user = await auth_student(cookies);
   if (!user) return;
 
-  const class_ = await add_class(classname, user.name);
+  const class_ = await add_class(classname, user.username);
   console.log("created class:", class_);
 
   await add_user_to_class(user.username, class_.id)
