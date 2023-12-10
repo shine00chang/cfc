@@ -49,64 +49,98 @@
   //todo: teachers delete post
 </script>
 
-<main>
-  <h1>{class_.name}</h1>
-  {#if class_.teachers.includes(user.username)}
-    <a href="{$page.url.pathname}/create">Create Posts</a>
-    <br>
-  {/if}
-  <h2>Latest Posts</h2>
+<main class="md:p-10">
+  <p class="text-5xl my-6">{class_.name}</p>
+
+
+  <div class="flex flex-row w-full">
+    {#if class_.teachers.includes(user.username)}
+      <a href="{$page.url.pathname}/create">Create Posts</a>
+      <br>
+    {/if}
+
+    <div class="flex-grow"></div>
+
+    <p class="text-2xl">Latest Posts</p>
+  </div>
+  <hr class="my-4">
+
+  <div class="my-4 flex flex-col items-center gap-8">
   {#each posts as post}
-    <div>
-      <h3>{post.title}</h3>
-      <span class="tooltip" data-tip={post.author.username}>by {post.author.name} at {post.timestamp}</span>
-      {#if post.type === "text"}
-        <p>{post.content}</p>
-      {:else if post.type === "pdf"}
-         <p>this is a pdf</p>
-      {/if}
-      <hr>
-      {#if post.submissions.length > 0}
-        <div>
-          {#each post.submissions as s}
-            <div>
-              <span class="tooltip" data-tip={s.author.username}>{s.author.name} at {s.timestamp}</span>
-              <br>
-              <span>
-                {#if s.content.startsWith("http://") || s.content.startsWith("https://")}
-                  <a href={s.content}>{s.content}</a>
-                {:else}
-                  {s.content}
-                {/if}
-              </span>
+
+    <!-- Post -->
+    <div class="card w-full border-[1px] border-base-content">
+      <div class="card-body">
+
+        <!-- Title -->
+        <div class="card-title w-full">
+          <div class="w-full">
+            <p class="text-2xl md:text-4xl">{post.title}</p>
+            <div class="flex flex-row w-full">
+              <div class="flex-grow"></div>
+              <span class="tooltip italic text-sm" data-tip={post.author.username}>by {post.author.name} at {post.timestamp}</span>
             </div>
-          {/each}
+          </div>
         </div>
-      {/if}
-      {#if show_sub === post.id}
-        <div>
-          <input bind:value={sub_value} type="text" placeholder="link to your submission..."/>
-          <button on:click={()=>send_sub(post.id)}>Submit Submission</button>
-        </div>
-      {:else}
-        <button on:click={()=>show_sub_f(post.id)}>Add Submission</button>
-      {/if}
-      <div>
-        {#each post.replies as r}
+
+        <!-- Body --> 
+        {#if post.type === "text"}
+          <p>{post.content}</p>
+        {:else if post.type === "pdf"}
+           <p>this is a pdf</p>
+        {/if}
+        <hr>
+
+        <!-- Submissions -->
+        {#if post.submissions.length > 0}
           <div>
+            {#each post.submissions as s}
+              <div>
+                <span class="tooltip" data-tip={s.author.username}>{s.author.name} at {s.timestamp}</span>
+                <br>
+                <span>
+                  {#if s.content.startsWith("http://") || s.content.startsWith("https://")}
+                    <a href={s.content}>{s.content}</a>
+                  {:else}
+                    {s.content}
+                  {/if}
+                </span>
+              </div>
+            {/each}
+          </div>
+        {/if}
+
+        <!-- New Submission -->
+        {#if show_sub === post.id}
+          <div class="flex flex-row items-center">
+            <textarea class="textarea textarea-bordered w-full h-8" placeholder="your submission..." bind:value={sub_value}/>
+            <button class="btn btn-ghost mx-2 px-1 w-8" on:click={()=>send_sub(post.id)}>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect width="24" height="24" opacity="0"/><path d="M21 4a1.31 1.31 0 0 0-.06-.27v-.09a1 1 0 0 0-.2-.3 1 1 0 0 0-.29-.19h-.09a.86.86 0 0 0-.31-.15H20a1 1 0 0 0-.3 0l-18 6a1 1 0 0 0 0 1.9l8.53 2.84 2.84 8.53a1 1 0 0 0 1.9 0l6-18A1 1 0 0 0 21 4zm-4.7 2.29l-5.57 5.57L5.16 10zM14 18.84l-1.86-5.57 5.57-5.57z"/></svg>
+            </button>
+          </div>
+        {:else}
+          <button class="btn btn-ghost" on:click={()=>show_sub_f(post.id)}>Add Submission</button>
+        {/if}
+
+        <!-- Reply list -->
+        <div>
+        {#each post.replies as r}
+          <div class="flex flex-row">
+            <p class="flex-grow">{r.content}</p>
             <span class="tooltip" data-tip={r.author.username}>{r.author.name} at {r.timestamp}</span>
-            <p>{r.content}</p>
           </div>
         {/each}
-      </div>
-      {#if show_reply === post.id}
-        <div>
-          <textarea bind:value={reply_value} placeholder="A comment..."/>
-          <button on:click={()=>send_reply(post.id)}>Submit Reply</button>
         </div>
-      {:else}
-        <button on:click={()=>show_reply_f(post.id)}>Add Reply</button>
-      {/if}
+
+        <!-- New reply -->
+        <div class="flex flex-row items-center">
+          <textarea class="textarea textarea-bordered w-full h-8" placeholder="reply" bind:value={reply_value}/>
+          <button class="btn btn-ghost mx-2 px-1 w-8" on:click={()=>send_reply(post.id)}>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect width="24" height="24" opacity="0"/><path d="M21 4a1.31 1.31 0 0 0-.06-.27v-.09a1 1 0 0 0-.2-.3 1 1 0 0 0-.29-.19h-.09a.86.86 0 0 0-.31-.15H20a1 1 0 0 0-.3 0l-18 6a1 1 0 0 0 0 1.9l8.53 2.84 2.84 8.53a1 1 0 0 0 1.9 0l6-18A1 1 0 0 0 21 4zm-4.7 2.29l-5.57 5.57L5.16 10zM14 18.84l-1.86-5.57 5.57-5.57z"/></svg>
+          </button>
+        </div>
+      </div>
     </div>
   {/each}
+  </div>
 </main>
