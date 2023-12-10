@@ -42,12 +42,10 @@ const onLogin = async () => {
 
 <!-- yes I know navbar is not h-1/6 -->
 <main class="flex flex-row items-center h-full">
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols place-items-center h-[70%]">
+  <!--<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols place-items-center h-[70%]">-->
+  <div class="mx-auto gap-12 flex flex-col md:flex-row items-center h-[70%]">
 
-    <div>
-      <h1 class="text-5xl lg:text-7xl tracking-widest">Bhargology</h1>
-      <br>
-    </div>
+    <h1 class="text-5xl md:text-7xl tracking-widest">Gödel</h1>
 
     <div class="flex flex-col items-center">
       <div class="mb-2">

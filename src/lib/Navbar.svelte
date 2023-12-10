@@ -51,7 +51,7 @@ if (!user || !user.username || !user.name) {
     </a>
   </div>
   <div class="navbar-center font-bold tracking-widest text-xl hidden md:block">
-    Bhargology
+    Gödel 
   </div>
   <div class="navbar-end">
     <JoinClassBtn/>
