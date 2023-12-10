@@ -4,6 +4,7 @@ import { get_class } from '$lib/server/class_op.js';
 import { error } from '@sveltejs/kit';
 
 export async function load ({ params, request, cookies }: { params: any, request: any, cookies: any }) {
+  console.log("params: ", params);
   const classid: string = params.class;
   console.log("cli", classid)
 

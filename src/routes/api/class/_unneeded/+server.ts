@@ -9,7 +9,6 @@ export async function GET ({ params, request, cookies }: { params: any, request:
     return new Response("request body is not JSON", { status: 400 });
   }
   const { classid } = json;
-  console.log("cli", classid)
   if (!classid)  
     return new Response("request body missing 'classid'", { status: 400 });
 

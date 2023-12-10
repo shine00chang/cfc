@@ -10,8 +10,8 @@ export async function load ({ params, request, cookies }: { params: any, request
   const user = await auth_student(cookies);
   let class_ = await get_class(classid) as unknown as ClassObj;
   if (!user) throw error(400, `none such user`);
-  if (!user.classes.includes(classid)) throw error(401, `You are not in this class bro`)
-  if (!class_) throw error(400, `none such class ${classid}, maybe it was delet`);
+  if (!class_) throw error(400, `none such class '${classid}'`);
+  if (!user.classes.includes(classid)) throw error(401, `You are not in the class ${classid}: ${class_.name}`)
   //only teachers can see submissions
   if (!class_.teachers.includes(user.username)) {
     class_.posts = class_.posts.map((p) => {p.submissions = []; return p});

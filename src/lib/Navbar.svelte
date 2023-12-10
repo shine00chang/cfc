@@ -14,6 +14,13 @@ const onLogout = async () => {
     alert("failed, check console");
   }
 }
+
+if (!user || !user.username || !user.name) {
+  console.log("corrupt user: ", user);
+  //goto('/nonesuchuser');
+}
+
+
 </script>
 <div class="navbar bg-base-300">
   <div class="navbar-start">
