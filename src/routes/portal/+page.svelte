@@ -1,11 +1,9 @@
 <script lang="ts">
-  import Navbar from "$lib/Navbar.svelte";
+  import CreateClassBtn from "$lib/CreateClassBtn.svelte";
 
   export let data;
   const { classes } = data;
 </script>
-
-<Navbar/>
 
 <!-- Temporary testing elements -->
 <div class="w-full flex flex-row gap-8">
@@ -15,8 +13,7 @@
 <div class="flex flex-row flex-wrap w-full gap-10 p-8">
   {#each classes as class_}
     <div on:click={_ => goto(`/portal/class/{class_.id}`)}
-      class="card w-52 h-52 bg-base-100 text text-primary-content drop-shadow-2xl overflow-hidden"
-      style="border-radius: 1.5rem">
+      class="card w-52 h-52 bg-base-100 text text-primary-content overflow-hidden border-[1px] border-base-content rounded-[2rem] rounded-bl-none">
       <div class="w-full bg-primary" style="height: 2rem"></div>
       <div class="card-body">
         <div class="card-title text-2xl font-bold tracking-widest">
@@ -32,3 +29,6 @@
     </div>
   {/each}
 </div>
+
+<!-- Create Class Button -->
+<CreateClassBtn />

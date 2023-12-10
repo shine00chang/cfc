@@ -44,16 +44,16 @@ export async function get_users_in_class(class_id: string) {
 }
 
 export async function add_user_to_class(username: string, class_id: string) {
-  const { modifiedCount } = await users.updateOne({
-    username,
-    classes: {
-      $nin: [class_id],
-    }
-  }, {
-    $push: {
-      classes: class_id,
-    }
-  });
+  const { modifiedCount } = await users.updateOne(
+    { username }, 
+    {
+      $addToSet: {
+        classes: class_id,
+      }
+    });
+  if (modifiedCount == 0) {
+    console.log(`class ${class_id} found in user ${username}`);
+  }
   return modifiedCount;
 }
 

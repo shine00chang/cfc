@@ -19,7 +19,7 @@ export async function POST ({ request, cookies }: { request: any, cookies: any }
   const class_ = await add_class(classname, user.name);
   console.log("created class:", class_);
 
-  await add_user_to_class(user.name, class_.id)
+  await add_user_to_class(user.username, class_.id)
   console.log("added self to class");
 
   return new Response(`done. joined '${classname}'`, { status: 201 });
