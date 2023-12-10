@@ -1,7 +1,6 @@
 <script lang="ts">
 import { fetchPost } from '$lib/util/fetch.ts';
 import { goto } from '$app/navigation';
-import Navbar from "$lib/Navbar.svelte";
 
 let classname: string;
 
@@ -18,8 +17,6 @@ const onCreate = async () => {
   }
 }
 </script>
-
-<Navbar/>
 
 <main>
   <div>
