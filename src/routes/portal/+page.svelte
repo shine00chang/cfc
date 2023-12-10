@@ -10,20 +10,25 @@
 <!-- Temporary testing elements -->
 <div class="w-full flex flex-row gap-8">
   <a href="portal/class/new">New Class</a>
-  <a href="portal/class/join">Join Class</a>
 </div>
 
-<div class="flex flex-row flex-wrap w-full gap-8 p-8">
+<div class="flex flex-row flex-wrap w-full gap-10 p-8">
   {#each classes as class_}
-    <a href="/portal/class/{class_.id}">
-      <div class="h-52 w-52 bg-stone-200 rounded-xl drop-shadow-2xl flex flex-col items-center">
-        <div class="text-2xl font-bold">
-          { class_.name }
-        </div>
-        <div class="text-sm">
-          { class_.id }
+    <div on:click={_ => goto(`/portal/class/{class_.id}`)}
+      class="card w-52 h-52 bg-base-100 text text-primary-content drop-shadow-2xl overflow-hidden"
+      style="border-radius: 1.5rem">
+      <div class="w-full bg-primary" style="height: 2rem"></div>
+      <div class="card-body">
+        <div class="card-title text-2xl font-bold tracking-widest">
+          <div class="font-bold">
+            { class_.name }
+            <br>
+            <span class="tracking-tight text-sm">
+              { class_.id }
+            </span>
+          </div>
         </div>
       </div>
-    </a>
+    </div>
   {/each}
 </div>

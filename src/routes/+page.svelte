@@ -1,6 +1,5 @@
 <script lang="ts">
 import { fetchPost } from "$lib/util/fetch.ts";
-import Navbar from "$lib/Navbar.svelte";
 import { goto } from "$app/navigation";
 
 let username: string = "";
@@ -43,12 +42,9 @@ const onLogin = async () => {
     create_error = true;
   } else {
     goto("/portal");
-  }
+ }
 }
 </script>
-
-<!--assumes login page will not be shown while logged in (pls redirect)-->
-<Navbar show_log_out={false}/>
 
 <!-- yes I know navbar is not h-1/6 -->
 <main class="h-5/6">
@@ -84,3 +80,9 @@ const onLogin = async () => {
     </div>
   </div>
 </main>
+
+<div class="hidden md:block flex-grow">
+  <div class="mockup-window border bg-base-300 h-96">
+
+  </div>
+</div>
