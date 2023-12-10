@@ -50,12 +50,15 @@
 </script>
 
 <main class="md:p-10">
-  <p class="text-5xl my-6">{class_.name}</p>
+  <div class="flex flex-col lg:flex-row lg:items-end">
+    <p class="text-3xl md:text-5xl my-6">{class_.name}</p>
+    <p class="flex-grow text-md text-right">{class_.id}</p>
+  </div>
 
 
   <div class="flex flex-row w-full">
     {#if class_.teachers.includes(user.username)}
-      <a href="{$page.url.pathname}/create" class="btn">Create Posts</a>
+      <a href="{$page.url.pathname}/create" class="btn">Create Post</a>
       <br>
     {/if}
 
