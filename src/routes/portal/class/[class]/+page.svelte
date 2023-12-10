@@ -1,7 +1,7 @@
 <script lang="ts">
   import { fetchPost } from '$lib/util/fetch.ts';
   import { page } from '$app/stores';
-  import { invalidateAll } from '$app/navigation';
+  import { timestamp_to_string } from '$lib/util/time.ts';
 
   export let data;
   const { class_, user } = data;
@@ -78,7 +78,7 @@
             <p class="text-2xl md:text-4xl">{post.title}</p>
             <div class="flex flex-row w-full">
               <div class="flex-grow"></div>
-              <span class="tooltip italic text-sm" data-tip={post.author.username}>by {post.author.name} at {post.timestamp}</span>
+              <span class="tooltip italic text-sm" data-tip={post.author.username}>by {post.author.name} at {timestamp_to_string(post.timestamp)}</span>
             </div>
           </div>
         </div>
@@ -86,8 +86,18 @@
         <!-- Body --> 
         {#if post.type === "text"}
           <p>{post.content}</p>
+        {:else if post.type === "youtube"}
+          <iframe title="youtube video" class="w-full" src="https://www.youtube.com/embed/{post.content.split("=")[1]}" height="500" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowfullscreen></iframe>
+        {:else if post.type === "link"}
+          <a href={post.content}>{post.content}</a>
         {:else if post.type === "pdf"}
-           <p>this is a pdf</p>
+          <p>this is a pdf</p>
+          <!--do validation on post submit instead pronbably-->
+          {#if post.content.startsWith("http")}
+            <embed src="https://drive.google.com/viewerng/viewer?embedded=true&url={post.content}" class="w-full" height="375">
+          {:else}
+            <p>PDF url was invalid, could not load.</p>
+          {/if}
         {/if}
         <hr>
 
@@ -96,7 +106,7 @@
           <div>
             {#each post.submissions as s}
               <div>
-                <span class="tooltip" data-tip={s.author.username}>{s.author.name} at {s.timestamp}</span>
+                <span class="tooltip" data-tip={s.author.username}>{s.author.name} at {timestamp_to_string(s.timestamp)}</span>
                 <br>
                 <span>
                   {#if s.content.startsWith("http://") || s.content.startsWith("https://")}
@@ -127,7 +137,7 @@
         {#each post.replies as r}
           <div class="flex flex-row">
             <p class="flex-grow">{r.content}</p>
-            <span class="tooltip" data-tip={r.author.username}>{r.author.name} at {r.timestamp}</span>
+            <span class="tooltip" data-tip={r.author.username}>{r.author.name} at {timestamp_to_string(r.timestamp)}</span>
           </div>
         {/each}
         </div>

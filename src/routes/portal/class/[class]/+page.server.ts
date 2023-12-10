@@ -3,7 +3,9 @@ import type { ClassObj } from '$lib/server/class_op.js';
 import { get_class } from '$lib/server/class_op.js';
 import { error } from '@sveltejs/kit';
 
-export async function load ({ params, request, cookies }: { params: any, request: any, cookies: any }) {
+export const ssr = false;
+
+export async function load ({ params, url, cookies }: { params: any, url: any, cookies: any }) {
   const classid: string = params.class;
   console.log("cli", classid)
 
@@ -19,5 +21,6 @@ export async function load ({ params, request, cookies }: { params: any, request
   return {
     class_,
     user,
+    pathname: url.pathname,
   };
 }
