@@ -52,3 +52,18 @@ export async function add_user_to_class(username: string, class_id: string) {
   });
   return modifiedCount;
 }
+
+//does this work?
+export async function remove_user_from_class(username: string, class_id: string) {
+  const { modifiedCount } = await users.updateOne({
+    username,
+    classes: {
+      $in: [class_id],
+    }
+  }, {
+    $pull: {
+      classes: class_id,
+    }
+  });
+  return modifiedCount;
+}

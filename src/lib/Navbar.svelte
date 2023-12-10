@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { goto } from "$app/navigation";
   import { fetchPost } from "$lib/util/fetch.ts";
 
   export let show_log_out: boolean = true;
@@ -11,6 +12,8 @@
 
         if (res.status >= 400) {
           alert("failed, check console");
+        } else {
+          goto("../");
         }
       })
   }

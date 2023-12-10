@@ -1,13 +1,24 @@
 classes: [
   id
   posts: [
+    id
+    title
+    author: user
     type: enumeration
     content: {
       // could be youtube link, pdf link, text with images
       [anything depending on type]
     }
-    submissions: []
-    replies: []
+    submissions: [
+      author: user
+      content //link probably
+      timestamp
+    ]
+    replies: [
+      author: user
+      content
+      timestamp
+    ]
   ]
   teachers: []
 ]
@@ -21,7 +32,9 @@ users: [
   classes: []
 ]
 
-AP's: 
+//currently no way to add multiple teachers, thats not high priority though
+
+APIs: 
 - Physics 1
 - /user/
 x - POST (1) /user/create
@@ -29,12 +42,12 @@ x - POST (1) /user/login
 x - POST (1) /user/logout
   - GET  (2) /user/classes 
   - GET  (2) /user/:class
-  - POST (2) /user/:class/join
-  - POST (5) /user/:class/:post/reply
-- /teacher/
-  - POST   (3) /teacher/create
-  - POST   (4) /teacher/:class/post // lots of validation
-  - DELETE (4) /teacher/:class/:post
-  - DELETE (3) /teacher/:class/remove/:user
-  - DELETE (3) /teacher/:class/delete/
-
+- /class/
+  - POST   (2) /class/join
+  - POST   (3) /class/create
+  - POST   (4) /class/post // lots of validation
+  - DELETE (4) /class/post/delete
+  - DELETE (3) /class/remove //remove user
+  - DELETE (3) /class/delete
+  - POST   (5) /class/post/reply
+  - POST   (5) /class/post/submit

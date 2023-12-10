@@ -1,6 +1,6 @@
 import { verify } from "argon2";
-import {get_class} from "./server/class_op";
-import { get_user } from "./server/user_op";
+import { get_class } from "./server/class_op.ts";
+import { get_user } from "./server/user_op.ts";
 
 export const validate_passcode = async (user: any, password: string) => {
   // TODO: Salting & hashing & shit
@@ -18,7 +18,8 @@ export const auth_student = async (cookies: any) => {
     console.log("CRITICAL ISSUE: session token refers to a nonexistent user");
     return undefined;
   }
-  user._id = undefined;
+  delete user._id;
+  console.log(user)
 
   return user;
 }

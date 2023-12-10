@@ -1,7 +1,9 @@
 <script lang="ts">
 import { fetchPost } from '$lib/util/fetch.ts';
 import { goto } from '$app/navigation';
-let classname;
+import Navbar from "$lib/Navbar.svelte";
+
+let classname: string;
 
 const onCreate = async () => {
   const body = { classname };
@@ -17,7 +19,14 @@ const onCreate = async () => {
 }
 </script>
 
-<div>
-  <input bind:value={classname} type="text" placeholder="class name">
-  <button on:click={onCreate}>create</button>
-</div>
+<Navbar/>
+
+<main>
+  <div>
+    <h1>Class Creation</h1>
+  </div>
+  <div>
+    <input bind:value={classname} type="text" placeholder="class name" class="input input-bordered focus:input-primary">
+    <button on:click={onCreate} class="btn btn-accent">create</button>
+  </div>
+</main>

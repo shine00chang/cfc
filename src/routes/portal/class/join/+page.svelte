@@ -1,7 +1,8 @@
 <script lang="ts">
 import { fetchPost } from '$lib/util/fetch.ts';
 import { goto } from '$app/navigation';
-let classid;
+import Navbar from "$lib/Navbar.svelte";
+let classid: string;
 
 const onCreate = async () => {
   const body = { classid };
@@ -17,7 +18,14 @@ const onCreate = async () => {
 }
 </script>
 
-<div>
-  <input bind:value={classid} type="text" placeholder="class id">
-  <button on:click={onCreate}>join</button>
-</div>
+<Navbar/>
+
+<main>
+  <div>
+    <h1>Join Class</h1>
+  </div>
+  <div>
+    <input bind:value={classid} type="text" placeholder="class id" class="input input-bordered focus:input-primary">
+    <button on:click={onCreate} class="btn btn-accent">join</button>
+  </div>
+</main>
