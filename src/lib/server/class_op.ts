@@ -17,13 +17,14 @@ export interface PostSubmitObj {
 }
 
 export interface PostObj {
-  id: string,
+  id: string;
+  timestamp: number;
   title: string;
   author: any;
   type: PostType;
   content: any; //for now
-  submissions: PostSubmitObj[],
-  replies: PostSubmitObj[],
+  submissions: PostSubmitObj[];
+  replies: PostSubmitObj[];
 }
 
 export interface ClassObj {
@@ -36,6 +37,7 @@ export interface ClassObj {
 export async function add_post(class_id: string, title: string, author: any, type: PostType, content: any): Promise<PostObj> {
   const post_obj: PostObj = {
     id: gen_id(),
+    timestamp: Date.now(),
     title,
     author,
     type,
@@ -84,19 +86,23 @@ export async function add_post_submission(class_id: string, post_id: string, aut
   });
 }
 
-export async function add_class(name: string): Promise<ClassObj> {
+export async function add_class(name: string, first_teacher): Promise<ClassObj> {
   const insert_obj: ClassObj = {
     id: gen_id(),
     name: name,
     posts: [],
-    teachers: [],
+    teachers: [first_teacher],
   }
   await classes.insertOne(insert_obj);
   return insert_obj;
 }
 
 export async function get_class(id: string) {
-  return await classes.findOne({ id });
+  return await classes.findOne({ id }, {
+    projection: {
+      _id: 0,
+    },
+  });
 }
 
 export async function delete_class(id: string) {

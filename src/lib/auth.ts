@@ -18,7 +18,6 @@ export const auth_student = async (cookies: any) => {
     console.log("CRITICAL ISSUE: session token refers to a nonexistent user");
     return undefined;
   }
-  delete user._id;
   console.log(user)
 
   return user;

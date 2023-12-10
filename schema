@@ -3,6 +3,7 @@ classes: [
   posts: [
     id
     title
+    timestamp
     author: user
     type: enumeration
     content: {

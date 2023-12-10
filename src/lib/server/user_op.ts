@@ -29,6 +29,10 @@ export async function add_user(username: string, name: string, password: string,
 export async function get_user(username: string) {
   return await users.findOne({
     username,
+  }, {
+    projection: {
+      _id: 0,
+    },
   });
 }
 
