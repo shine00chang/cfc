@@ -12,6 +12,8 @@ const onLogout = async () => {
 
   if (res.status >= 400) {
     alert("failed, check console");
+  } else {
+    goto("/");
   }
 }
 

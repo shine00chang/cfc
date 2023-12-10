@@ -1,7 +1,7 @@
-<script>
+<script lang="ts">
 import { fetchPost } from "$lib/util/fetch.ts";
-let classname;
-let message = '';
+let classname: string;
+let message: string = '';
 
 const onCreate = async (e) => {
   const body = { classname };
@@ -12,7 +12,7 @@ const onCreate = async (e) => {
   if (res.status >= 400) {    
     message = text;
   } else {
-    document.getElementById("create_class_modal").close();
+    (document.getElementById("create_class_modal") as HTMLDialogElement).close();
   }
 }
 
@@ -39,7 +39,7 @@ const onCreate = async (e) => {
 </dialog>
 
 <a onclick="create_class_modal.showModal()" 
-  class="mx-4 p-2 fixed rounded-full bg-base-100 border-[1px] border-base-content hover:bg-base-200"
+  class="mx-4 p-2 fixed rounded-full bg-base-100 border-[1px] border-base-content hover:bg-base-200 hover:cursor-pointer"
   style="transition: all 200ms; right: 2rem; bottom: 4rem;">
   Create +
 </a>
